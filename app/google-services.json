@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "168901048230",
+    "firebase_url": "https://big-eater-20.firebaseio.com",
+    "project_id": "big-eater-20",
+    "storage_bucket": "big-eater-20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168901048230:android:38d8a43961328d6e184167",
+        "android_client_info": {
+          "package_name": "com.anfaas.bigeater20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168901048230-kvo64u8q6snbgc6afjmd9ktju8q1menn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anfaas.bigeater20",
+            "certificate_hash": "7b47cd202bda3a74b45243e725b7cadda1d786e0"
+          }
+        },
+        {
+          "client_id": "168901048230-hdb66opksld2honnr21rv4gciap7rd4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY782U82B9yRsvuvq_E0j0AIwykUo2AnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168901048230-hdb66opksld2honnr21rv4gciap7rd4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

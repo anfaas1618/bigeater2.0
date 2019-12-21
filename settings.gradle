@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='big eater 2.0'

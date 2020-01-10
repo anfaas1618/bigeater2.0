@@ -261,7 +261,7 @@ public class main extends AppCompatActivity {
                         }
                     });
                 }
-            }, 0, 20);
+            }, 0, 10);
 
 
         } else {

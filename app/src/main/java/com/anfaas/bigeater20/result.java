@@ -1,5 +1,6 @@
 package com.anfaas.bigeater20;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class result extends AppCompatActivity {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,6 @@ public class result extends AppCompatActivity {
 
         int score = getIntent().getIntExtra("SCORE", 0);
         scoreLabel.setText(score + "");
-
         SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
          int highScore = settings.getInt("HIGH_SCORE", 0);
 
@@ -45,7 +46,6 @@ public class result extends AppCompatActivity {
 
         } else {
             highScoreLabel.setText("High Score : " + highScore);
-
         }
 
     }

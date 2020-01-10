@@ -52,7 +52,10 @@ public class start extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-        startActivity(new Intent(getApplicationContext(), main.class));
+         String uid = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        Intent intent = new Intent(getApplicationContext(), main.class);
+        intent.putExtra("EXTRA_SESSION_ID", uid);
+        startActivity(intent);
     }
 
     // Disable Return Button

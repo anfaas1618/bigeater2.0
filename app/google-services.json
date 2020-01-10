@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "168901048230-pff2irso3jku2cfnnuupjvb8npbuco81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anfaas.bigeater20",
+            "certificate_hash": "2136f7232af62bb915ed34395d694592bcb8c012"
+          }
+        },
+        {
           "client_id": "168901048230-kvo64u8q6snbgc6afjmd9ktju8q1menn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

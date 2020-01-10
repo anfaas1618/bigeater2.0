@@ -21,6 +21,9 @@ import java.util.TimerTask;
 
 public class main extends AppCompatActivity {
 
+    Intent intent;
+    public final static String USERNAME = "com.example.myfirstapp.MESSAGE";
+    public final static String EMAIL = "com.example.myfirstapp.EMAIL";
     private TextView scoreLabel;
     private TextView startLabel;
     private ImageView box;
@@ -220,7 +223,7 @@ public class main extends AppCompatActivity {
             sound.playOverSound();
 
             // Show Result
-            Intent intent = new Intent(getApplicationContext(), result.class);
+            Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
             intent.putExtra("SCORE", score);
             startActivity(intent);
 
@@ -261,7 +264,7 @@ public class main extends AppCompatActivity {
                         }
                     });
                 }
-            }, 0, 10);
+            }, 0, 30);
 
 
         } else {

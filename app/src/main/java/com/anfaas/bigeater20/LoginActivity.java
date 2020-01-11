@@ -72,15 +72,16 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor1 = login.edit();
                             editor1.putInt("LOGIN", 1);
                             editor1.commit();
+                            SharedPreferences UID = getSharedPreferences("UID", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor EDIT = UID.edit();
+                            EDIT.putString("UID", user.Uid);
+                            EDIT.commit();
                             int highScore = settings.getInt("HIGH_SCORE", 0);
                             if (highScore==0) {
                                 SharedPreferences.Editor editor = settings.edit();
                                 editor.putInt("HIGH_SCORE", user.score);
                                 editor.commit();
-                                SharedPreferences UID = getSharedPreferences("UID", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor EDIT = UID.edit();
-                                EDIT.putString("UID", user.Uid);
-                                editor.commit();
+
                             }
                             intent.putExtra("EXTRA_SESSION_ID", currentFirebaseUser.getUid());
                             startActivity(intent);

@@ -24,6 +24,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LeaderBoardActivity extends AppCompatActivity {
@@ -31,12 +32,17 @@ public class LeaderBoardActivity extends AppCompatActivity {
  //   String uid;
  int scoree=0;
     ListView listView;
+    String uid_saved;
+    String name_Saved;
+    FirebaseUser userAuth;
    FirebaseDatabase database=FirebaseDatabase.getInstance();
    DatabaseReference myRef=database.getReference("scores");
    LoginActivity activity=new LoginActivity();
     User user1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences namePref=getSharedPreferences("NAME",Context.MODE_PRIVATE);
+        name_Saved=namePref.getString("NAME","user");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
@@ -60,12 +66,25 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
       FirebaseAuth auth= LoginActivity.myAuth;
-        FirebaseUser userAuth=auth.getCurrentUser();
-        FirebaseDatabase userDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference userRef=userDatabase.getReference(userAuth.getUid());
-          userRef.child("score").setValue(highScore);
+        SharedPreferences UID= getSharedPreferences("UID", Context.MODE_PRIVATE);
+         uid_saved = UID.getString("UID", "0");
+        if (uid_saved=="0") {
+try {
+     userAuth = auth.getCurrentUser();
+    FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference userRef = userDatabase.getReference(userAuth.getUid());
+    userRef.child("score").setValue(highScore);
+}
+catch (Exception e)
+{
+    Log.i("error",e.toString());
+}
 
-
+        }
+else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference userRef = userDatabase.getReference(uid_saved);
+            userRef.child("score").setValue(highScore);
+}
         listView=findViewById(R.id.list);
         playerScoreList=new ArrayList<PlayerScore>();
  //  String Uid=     activity.user.Uid;
@@ -81,17 +100,32 @@ public class LeaderBoardActivity extends AppCompatActivity {
                        user1=dataSnapshot.getValue(User.class);
                       SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
                       int highScore = settings.getInt("HIGH_SCORE", 0);
+                      if (uid_saved=="0") {
+                          if (scoree > highScore) {
+                              playerScore = new PlayerScore(LoginActivity.NAME, scoree, user1.Uid);
 
-                      if (scoree>highScore) {
-                           playerScore=new PlayerScore(LoginActivity.NAME,scoree,user1.Uid);
+                          } else
+                              playerScore = new PlayerScore(LoginActivity.NAME, highScore, user1.Uid);
                       }
                       else
-                          playerScore=new PlayerScore(LoginActivity.NAME,highScore,user1.Uid);
+                      {
+                          if (scoree > highScore) {
+                              playerScore = new PlayerScore(name_Saved, scoree, user1.Uid);
+
+                          } else
+                              playerScore = new PlayerScore(name_Saved, highScore, user1.Uid);
+                      }
                       FirebaseDatabase database=FirebaseDatabase.getInstance();
 //                      Log.i("am",user1.Nane);
                       DatabaseReference scoreSet=database.getReference("scores");
+                      if (uid_saved=="0") {
+                          try {
+                              scoreSet.child(LoginActivity.IDID).setValue(playerScore);
+                          } catch (Exception e) {
 
-                      scoreSet.child(LoginActivity.IDID).setValue(playerScore);
+                          }
+                      }
+                      else   scoreSet.child(uid_saved).setValue(playerScore);
 
                   }
 
@@ -112,7 +146,10 @@ public class LeaderBoardActivity extends AppCompatActivity {
               {     PlayerScore fruits = snap.getValue(PlayerScore.class);
                   playerScoreList.add(fruits);
               }
+              Collections.sort(playerScoreList);
+              Collections.reverse(playerScoreList);
               ScoreAdapter fruitsAdapter=new ScoreAdapter(LeaderBoardActivity.this,playerScoreList);
+
               listView.setAdapter(fruitsAdapter);
 
 

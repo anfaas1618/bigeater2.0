@@ -34,6 +34,11 @@ String uID;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        SharedPreferences login = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+
+        int loginInt = login.getInt("LOGIN", 0);
+        if (loginInt==1)
+            startActivity(new Intent(this,start.class));
         name=findViewById(R.id.txtName);
         email=findViewById(R.id.txtEmail);
         password=findViewById(R.id.txtPwd);

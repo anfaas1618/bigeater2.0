@@ -3,9 +3,11 @@ package com.anfaas.bigeater20;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -62,15 +64,27 @@ public class LoginActivity extends AppCompatActivity {
                             IDID=currentFirebaseUser.getUid();
                             NAME=currentFirebaseUser.getDisplayName();
                             SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
-
+                            SharedPreferences login = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+                            SharedPreferences name_saved = getSharedPreferences("NAME", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor edit_name=name_saved.edit();
+                            edit_name.putString("NAME",NAME);
+                            edit_name.commit();
+                            SharedPreferences.Editor editor1 = login.edit();
+                            editor1.putInt("LOGIN", 1);
+                            editor1.commit();
                             int highScore = settings.getInt("HIGH_SCORE", 0);
                             if (highScore==0) {
                                 SharedPreferences.Editor editor = settings.edit();
                                 editor.putInt("HIGH_SCORE", user.score);
                                 editor.commit();
+                                SharedPreferences UID = getSharedPreferences("UID", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor EDIT = UID.edit();
+                                EDIT.putString("UID", user.Uid);
+                                editor.commit();
                             }
                             intent.putExtra("EXTRA_SESSION_ID", currentFirebaseUser.getUid());
                             startActivity(intent);
+
 
                         }
                     }

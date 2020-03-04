@@ -20,7 +20,7 @@ import java.util.TimerTask;
 
 
 public class main extends AppCompatActivity {
-
+    //nothing here
     Intent intent;
     public final static String USERNAME = "com.example.myfirstapp.MESSAGE";
     public final static String EMAIL = "com.example.myfirstapp.EMAIL";

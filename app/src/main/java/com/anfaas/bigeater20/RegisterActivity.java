@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    String nameS,emailS,passS;
 TextView name,email,password;
 Button loginBtn;
 FirebaseDatabase database= FirebaseDatabase.getInstance();
@@ -34,7 +33,7 @@ String uID;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        SharedPreferences login = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+        final SharedPreferences login = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
 
         int loginInt = login.getInt("LOGIN", 0);
         if (loginInt==1)
@@ -69,6 +68,7 @@ String uID;
                                                                   build();
                           firebaseUser.updateProfile(request);
                             addUser();
+                            login();
 
                         }
                     }
@@ -79,7 +79,7 @@ String uID;
     }
     public  void addUser()
     {
-        String nameS,emailS,passS;
+
         nameS=name.getText().toString();
         emailS=email.getText().toString();
         passS=password.getText().toString();
@@ -89,5 +89,39 @@ String uID;
     public void test(View view)
     {
           startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+    }
+    public void login()
+    {
+        myAuth.signInWithEmailAndPassword(emailS,passS).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful())
+                {
+                    Toast.makeText(RegisterActivity.this, "login sucess", Toast.LENGTH_SHORT).show();
+                    FirebaseUser firebaseUser=myAuth.getCurrentUser();
+
+                    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                    Intent intent = new Intent(getBaseContext(), start.class);
+
+                    SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
+                    SharedPreferences login = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+                    SharedPreferences name_saved = getSharedPreferences("NAME", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit_name=name_saved.edit();
+                    edit_name.putString("NAME",currentFirebaseUser.getDisplayName());
+                    edit_name.commit();
+                    SharedPreferences.Editor editor1 = login.edit();
+                    editor1.putInt("LOGIN", 1);
+                    editor1.commit();
+                    SharedPreferences UID = getSharedPreferences("UID", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor EDIT = UID.edit();
+                    EDIT.putString("UID", currentFirebaseUser.getUid());
+                    EDIT.commit();
+                    int highScore = settings.getInt("HIGH_SCORE", 0);
+
+                    intent.putExtra("EXTRA_SESSION_ID", currentFirebaseUser.getUid());
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

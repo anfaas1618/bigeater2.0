@@ -143,8 +143,8 @@ else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
               playerScoreList.clear();
               for (DataSnapshot snap:dataSnapshot.getChildren())
-              {     PlayerScore fruits = snap.getValue(PlayerScore.class);
-                  playerScoreList.add(fruits);
+              {     PlayerScore scores = snap.getValue(PlayerScore.class);
+                  playerScoreList.add(scores);
               }
               Collections.sort(playerScoreList);
               Collections.reverse(playerScoreList);

@@ -7,22 +7,40 @@
     android:orientation="vertical"
     tools:context=".LeaderBoardActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="325dp"
+        android:layout_height="313dp"
+        app:layout_constraintBottom_toTopOf="@+id/scoreLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="312dp"
+            android:dividerHeight="10dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="64dp" />
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/GameOver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="164dp"
         android:text="GAME OVER"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/scoreLabel"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_chainStyle="spread_inside" />
 
     <TextView
         android:id="@+id/scoreLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="60dp"
         android:text="150"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="32dp"
         android:text="High Score : 300"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,9 +64,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="15dp"
-        android:onClick="tryAgain"
+        android:layout_marginBottom="52dp"
 
+        android:onClick="tryAgain"
         android:text="Try Again"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/highScoreLabel"
@@ -55,8 +74,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="618dp"
+        android:layout_width="408dp"
+        android:layout_height="67dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,13 +89,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="40sp"
             android:textStyle="bold" />
-
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="409dp"
-            android:layout_height="602dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="64dp" />
     </LinearLayout>
 
 

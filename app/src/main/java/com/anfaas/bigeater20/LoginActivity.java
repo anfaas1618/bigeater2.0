@@ -2,6 +2,7 @@ package com.anfaas.bigeater20;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -26,9 +27,8 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView email,password;
     public  static String IDID;
-
     public  static String NAME;
-    Button login;
+    CardView login;
    public static FirebaseAuth myAuth;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference myREf=database.getReference();

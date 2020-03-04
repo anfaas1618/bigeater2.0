@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".SetImage"></activity>
+        <activity android:name=".SelectImage" />
         <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,14 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.anfaas.bigeater20.main">
-
-        </activity>
-        <activity android:name="com.anfaas.bigeater20.start"/>
-        <activity android:name=".LeaderBoardActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name="com.anfaas.bigeater20.result"/>
+        <activity android:name=".main" />
+        <activity android:name=".start" />
+        <activity android:name=".LeaderBoardActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".result" />
     </application>
 
 </manifest>

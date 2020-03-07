@@ -126,7 +126,7 @@ catch ( Exception e)
     public  void checkimage(View view)
     {   Log.i("kkk",urlupload.toString());
         try {
-            Picasso.get().load(urlupload).into(setimage);
+            Picasso.get().load(urlupload).centerCrop().fit().into(setimage);
         }
         catch (Exception e)
         {

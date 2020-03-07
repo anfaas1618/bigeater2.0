@@ -14,6 +14,7 @@ public     int score;
         this.Uid=uID;
         this.score=score;
     }
+
     public User()
     {
 

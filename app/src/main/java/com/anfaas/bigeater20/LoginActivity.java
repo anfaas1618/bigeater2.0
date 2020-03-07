@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                             passwordS,
                                              firebaseUser.getUid(),0);
                             FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                            Intent intent = new Intent(getBaseContext(), start.class);
+                            Intent intent = new Intent(getBaseContext(), SetImage.class);
                             IDID=currentFirebaseUser.getUid();
                             NAME=currentFirebaseUser.getDisplayName();
                             SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);

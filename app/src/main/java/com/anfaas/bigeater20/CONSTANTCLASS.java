@@ -2,6 +2,7 @@ package com.anfaas.bigeater20;
 
 public class CONSTANTCLASS {
     LoginActivity login = new LoginActivity();
+      static  String urlimage = null;
 //    public String id = login.user.Uid;
 
   //  public String getId() {
@@ -19,5 +20,9 @@ public class CONSTANTCLASS {
             return UID;
   //      }
      //   return "default";
+    }
+    public    void setUrlimage(String urlimage1)
+    {
+        this.urlimage=urlimage1;
     }
 }

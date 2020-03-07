@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
     tools:context=".LoginActivity">
 
 
@@ -73,32 +72,13 @@
         android:layout_marginBottom="6dp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:layout_alignStart="@id/txtEmail"
+        android:layout_alignLeft="@id/txtPwd"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView"
-        android:id="@+id/linearLayout">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/twitter" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            app:srcCompat="@drawable/instagram" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            app:srcCompat="@drawable/facebook" />
     </LinearLayout>
 </RelativeLayout>

@@ -7,7 +7,7 @@
     tools:context=".SetImage">
 
     <TextView
-        style="@style/TextAppearance.Compat.Notification.Media"
+
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         android:layout_marginTop="-1dp"
         android:layout_marginEnd="135dp"
         android:padding="10dp"
-        android:src="@drawable/common_google_signin_btn_text_dark" />
+ />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -39,7 +39,7 @@
         android:layout_below="@+id/imagePreview">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/choseimg"
             android:paddingRight="10dp"
             android:padding="10dp"
             android:layout_width="wrap_content"
@@ -48,11 +48,18 @@
             android:text="choose file" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/uploadimg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="upload" />
+        <Button
+            android:id="@+id/checkimage"
+            android:onClick="checkimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="check image" />
     </LinearLayout>
 
 

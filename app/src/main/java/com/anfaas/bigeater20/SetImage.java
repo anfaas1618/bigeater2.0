@@ -25,9 +25,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 import java.net.URI;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SetImage extends AppCompatActivity {
    Button btnChooseImg;
@@ -36,6 +40,7 @@ public class SetImage extends AppCompatActivity {
    ImageView setimage;
     Uri urlupload;
    Uri imageuri;
+   CircleImageView setImageCircle;
 
    DatabaseReference myref;
     StorageReference reference;
@@ -45,7 +50,8 @@ public class SetImage extends AppCompatActivity {
         setContentView(R.layout.activity_set_image);
         btnChooseImg=findViewById(R.id.choseimg);
         btnUpload=findViewById(R.id.uploadimg);
-        setimage=findViewById(R.id.imagePreview);
+        setImageCircle=(CircleImageView)findViewById(R.id.profile_image);
+      //  setimage=findViewById(R.id.imagePreview);
         reference = FirebaseStorage.getInstance().getReference("uploads");
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         myref=database.getReference("uploads");
@@ -125,8 +131,9 @@ catch ( Exception e)
 
     public  void checkimage(View view)
     {   Log.i("kkk",urlupload.toString());
-        try {
-            Picasso.get().load(urlupload).centerCrop().fit().into(setimage);
+        try
+        {
+            Picasso.get().load(urlupload).centerCrop().fit().into(setImageCircle);
         }
         catch (Exception e)
         {
@@ -135,16 +142,32 @@ catch ( Exception e)
     }
     private  void uploadImage()
 {
-    Intent intent=new Intent();
-    intent.setType("image/*");
-    intent.setAction(Intent.ACTION_GET_CONTENT);
-    startActivityForResult(intent,PICK_IMAGE_REQUEST);
+//    Intent intent=new Intent();
+//    intent.setType("image/*");
+//    intent.setAction(Intent.ACTION_GET_CONTENT);
+//    startActivityForResult(intent,PICK_IMAGE_REQUEST);
+    CropImage.activity()
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .start(this);
+
 }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (data != null) {
-            imageuri=data.getData();
+
+
+
+          //  imageuri=data.getData();
+        }
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                 imageuri = result.getUri();
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
         }
         Log.i("anfaas", String.valueOf(imageuri));
       //  setimage.setImageURI(imageuri);

@@ -101,7 +101,7 @@ String uID;
                     FirebaseUser firebaseUser=myAuth.getCurrentUser();
 
                     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                    Intent intent = new Intent(getBaseContext(), start.class);
+                    Intent intent = new Intent(getBaseContext(), SetImage.class);
 
                     SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
                     SharedPreferences login = getSharedPreferences("LOGIN", Context.MODE_PRIVATE);

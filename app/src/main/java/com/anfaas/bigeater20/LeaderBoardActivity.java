@@ -34,8 +34,11 @@ public class LeaderBoardActivity extends AppCompatActivity {
     ListView listView;
     String uid_saved;
     String name_Saved;
+    List <UserImage> userImageslist;
     FirebaseUser userAuth;
    FirebaseDatabase database=FirebaseDatabase.getInstance();
+   FirebaseDatabase userimage=FirebaseDatabase.getInstance();
+   DatabaseReference imageref=userimage.getReference("uploads");
    DatabaseReference myRef=database.getReference("scores");
    LoginActivity activity=new LoginActivity();
     User user1;
@@ -47,7 +50,9 @@ public class LeaderBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_leader_board);
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
+        final SharedPreferences imageurll = getSharedPreferences("IMAGEURL", Context.MODE_PRIVATE);
 
+            final    String IMAGEurl = imageurll.getString("IMAGEURL", "null");
      scoree = getIntent().getIntExtra("SCORE", 0);
         scoreLabel.setText(scoree + "");
         SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
@@ -87,6 +92,7 @@ else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
 }
         listView=findViewById(R.id.list);
         playerScoreList=new ArrayList<PlayerScore>();
+        userImageslist =new ArrayList<>();
  //  String Uid=     activity.user.Uid;
 
 
@@ -102,18 +108,18 @@ else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
                       int highScore = settings.getInt("HIGH_SCORE", 0);
                       if (uid_saved=="0") {
                           if (scoree > highScore) {
-                              playerScore = new PlayerScore(LoginActivity.NAME, scoree, user1.Uid);
+                              playerScore = new PlayerScore(LoginActivity.NAME, scoree, user1.Uid,IMAGEurl);
 
                           } else
-                              playerScore = new PlayerScore(LoginActivity.NAME, highScore, user1.Uid);
+                              playerScore = new PlayerScore(LoginActivity.NAME, highScore, user1.Uid,IMAGEurl);
                       }
                       else
                       {
                           if (scoree > highScore) {
-                              playerScore = new PlayerScore(name_Saved, scoree, user1.Uid);
+                              playerScore = new PlayerScore(name_Saved, scoree, user1.Uid,IMAGEurl);
 
                           } else
-                              playerScore = new PlayerScore(name_Saved, highScore, user1.Uid);
+                              playerScore = new PlayerScore(name_Saved, highScore, user1.Uid,IMAGEurl);
                       }
                       FirebaseDatabase database=FirebaseDatabase.getInstance();
 //                      Log.i("am",user1.Nane);
@@ -141,11 +147,14 @@ else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
       myRef.addValueEventListener(new ValueEventListener() {
           @Override
           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
               playerScoreList.clear();
               for (DataSnapshot snap:dataSnapshot.getChildren())
               {     PlayerScore scores = snap.getValue(PlayerScore.class);
                   playerScoreList.add(scores);
               }
+
+
               Collections.sort(playerScoreList);
               Collections.reverse(playerScoreList);
               ScoreAdapter fruitsAdapter=new ScoreAdapter(LeaderBoardActivity.this,playerScoreList);

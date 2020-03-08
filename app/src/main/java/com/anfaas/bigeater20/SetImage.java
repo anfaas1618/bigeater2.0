@@ -40,6 +40,7 @@ public class SetImage extends AppCompatActivity {
    ImageView setimage;
     Uri urlupload;
    Uri imageuri;
+   Button okdone;
    CircleImageView setImageCircle;
 
    DatabaseReference myref;
@@ -50,6 +51,7 @@ public class SetImage extends AppCompatActivity {
         setContentView(R.layout.activity_set_image);
         btnChooseImg=findViewById(R.id.choseimg);
         btnUpload=findViewById(R.id.uploadimg);
+        okdone=findViewById(R.id.btnDoneUpload);
         setImageCircle=(CircleImageView)findViewById(R.id.profile_image);
       //  setimage=findViewById(R.id.imagePreview);
         reference = FirebaseStorage.getInstance().getReference("uploads");
@@ -65,6 +67,15 @@ public class SetImage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadFirebase();
+            }
+        });
+        okdone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (imageuri!=null)
+                 startActivity(   new Intent(SetImage.this, start.class));
+                else
+                    Toast.makeText(SetImage.this, "please choose a image", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -87,8 +98,6 @@ public class SetImage extends AppCompatActivity {
 
 try {
 
-
-
  final    String uid = UID.getString("UID", "null");
 
     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -97,6 +106,10 @@ try {
             Log.i("urlis",uri.toString());
             Toast.makeText(SetImage.this, "got it do it now", Toast.LENGTH_SHORT).show();
             urlupload=uri;
+            SharedPreferences imageurll = getSharedPreferences("IMAGEURL", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit_name=imageurll.edit();
+            edit_name.putString("IMAGEURL",urlupload.toString());
+            edit_name.commit();
             UserImage image = new UserImage(uid, urlupload.toString());
             myref.child(uid).setValue(image);
         }
@@ -148,6 +161,7 @@ catch ( Exception e)
 //    startActivityForResult(intent,PICK_IMAGE_REQUEST);
     CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(1,1)
             .start(this);
 
 }

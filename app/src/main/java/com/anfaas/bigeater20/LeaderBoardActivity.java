@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
     List<PlayerScore> playerScoreList;
  //   String uid;
  int scoree=0;
+ Button avatarchoosebtn;
     ListView listView;
     String uid_saved;
     String name_Saved;
@@ -48,6 +50,13 @@ public class LeaderBoardActivity extends AppCompatActivity {
         name_Saved=namePref.getString("NAME","user");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
+        avatarchoosebtn=findViewById(R.id.avatarchange);
+        avatarchoosebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(LeaderBoardActivity.this,SetImage.class));
+            }
+        });
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         final SharedPreferences imageurll = getSharedPreferences("IMAGEURL", Context.MODE_PRIVATE);

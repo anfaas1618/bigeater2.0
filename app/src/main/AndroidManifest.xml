@@ -28,7 +28,6 @@
         <activity android:name=".start" />
         <activity android:name=".LeaderBoardActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".result" />
     </application>
 
 </manifest>

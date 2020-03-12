@@ -54,6 +54,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         avatarchoosebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //not working
                 startActivity( new Intent(LeaderBoardActivity.this,SetImage.class));
             }
         });

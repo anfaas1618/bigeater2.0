@@ -16,10 +16,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -41,20 +49,48 @@ public class SetImage extends AppCompatActivity {
     Uri urlupload;
    Uri imageuri;
    Button okdone;
+   String uid_all;
+   String email,password;
    CircleImageView setImageCircle;
 
    DatabaseReference myref;
     StorageReference reference;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_image);
+        SharedPreferences UID = getSharedPreferences("UID", Context.MODE_PRIVATE);
+        final    String uid = UID.getString("UID", "null");
+        uid_all=uid;
         btnChooseImg=findViewById(R.id.choseimg);
         btnUpload=findViewById(R.id.uploadimg);
         okdone=findViewById(R.id.btnDoneUpload);
         setImageCircle=(CircleImageView)findViewById(R.id.profile_image);
       //  setimage=findViewById(R.id.imagePreview);
         reference = FirebaseStorage.getInstance().getReference("uploads");
+        FirebaseDatabase authdatabase = FirebaseDatabase.getInstance();
+
+     FirebaseDatabase   data=FirebaseDatabase.getInstance();
+     DatabaseReference authref=data.getReference();
+        if(uid!=null) {
+            authref.child(uid).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                  User user=dataSnapshot.getValue(User.class);
+             email=     user.Email;
+             password=user.PassWord;
+             Log.i("kks",email);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         myref=database.getReference("uploads");
         btnChooseImg.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +108,12 @@ public class SetImage extends AppCompatActivity {
         okdone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    Log.i("msg",email);
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
                 if (imageuri!=null)
                  startActivity(   new Intent(SetImage.this, start.class));
                 else
@@ -94,11 +136,11 @@ public class SetImage extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(SetImage.this, "sucess", Toast.LENGTH_SHORT).show();
-                    SharedPreferences UID = getSharedPreferences("UID", Context.MODE_PRIVATE);
+
 
 try {
 
- final    String uid = UID.getString("UID", "null");
+
 
     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
         @Override
@@ -110,8 +152,8 @@ try {
             SharedPreferences.Editor edit_name=imageurll.edit();
             edit_name.putString("IMAGEURL",urlupload.toString());
             edit_name.commit();
-            UserImage image = new UserImage(uid, urlupload.toString());
-            myref.child(uid).setValue(image);
+            UserImage image = new UserImage(uid_all, urlupload.toString());
+            myref.child(uid_all).setValue(image);
         }
     });
 //    File localFile = File.createTempFile("images", "png");

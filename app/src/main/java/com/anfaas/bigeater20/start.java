@@ -7,13 +7,9 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.google.android.gms.ads.AdListener;
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.InterstitialAd;
+
 
 public class start extends AppCompatActivity {
-
-  //  private InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,33 +17,14 @@ public class start extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
 
-        // Create the interstitial.
-      //  interstitial = new InterstitialAd(this);
 
-        // Set your unit id. THIS IS TEST ID!!
-     //   interstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-
-        // Create request.
-    //    AdRequest adRequest = new AdRequest.Builder().build();
-
-        // Start loading...
-    //    interstitial.loadAd(adRequest);
-
-        // Once request is loaded, display ad.
-     //   interstitial.setAdListener(new AdListener() {
-        //    public void onAdLoaded() {
-                displayInterstitial();
-      //      }
-    //    });
 
     }
 
 
     public void displayInterstitial() {
 
-     //   if (interstitial.isLoaded()) {
-     //       interstitial.show();
-      //  }
+
 
     }
 
@@ -58,7 +35,6 @@ public class start extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // Disable Return Button
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
 

@@ -18,7 +18,6 @@ public class SoundPlayer {
 
     public SoundPlayer(Context context) {
 
-        // SoundPool is deprecated in API level 21. (Lollipop)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             audioAttributes = new AudioAttributes.Builder()
@@ -32,7 +31,7 @@ public class SoundPlayer {
                     .build();
 
         } else {
-            //SoundPool (int maxStreams, int streamType, int srcQuality)
+
             soundPool = new SoundPool(SOUND_POOL_MAX, AudioManager.STREAM_MUSIC, 0);
         }
 
@@ -44,7 +43,6 @@ public class SoundPlayer {
 
     public void playHitSound() {
 
-        // play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
         soundPool.play(hitSound, 1.0f, 1.0f, 1, 0, 1.0f);
     }
 

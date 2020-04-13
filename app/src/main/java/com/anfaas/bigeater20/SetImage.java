@@ -175,7 +175,7 @@ try {
 }
 catch ( Exception e)
 {
-    Toast.makeText(SetImage.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+    e.printStackTrace();
 }
 
                 }

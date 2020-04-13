@@ -39,8 +39,8 @@ public class ScoreAdapter extends ArrayAdapter<PlayerScore> {
         CircleImageView circleImageView =myView.findViewById(R.id.list_image);
         PlayerScore score1=getItem(position);
         name.setText(score1.getName());
-        Uri imageUri=Uri.parse(score1.getImageurl());
-        Picasso.get().load(imageUri).into(circleImageView);
+        //Uri imageUri=Uri.parse(score1.getImageurl());
+        Picasso.get().load(score1.getImageurl()).into(circleImageView);
         score.setText(String.valueOf(score1.getScore()));
         return  myView;
     }

@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".LeaderBoardActivity">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="325dp"

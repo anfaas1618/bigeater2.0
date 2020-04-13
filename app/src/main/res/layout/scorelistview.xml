@@ -16,10 +16,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/list_image"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="54dp"
+                android:layout_height="51dp"
+                android:paddingTop="20dp"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp" />
         <TextView
@@ -27,11 +29,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:layout_gravity="top"
+            android:textSize="30sp"/>
         </LinearLayout>
         <TextView
         android:id="@+id/scoreTxt"
         android:layout_width="match_parent"
+            android:textAlignment="textEnd"
         android:layout_height="wrap_content"
         android:text="score"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />

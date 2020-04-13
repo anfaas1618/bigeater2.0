@@ -1,67 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SetImage">
+    android:background="@drawable/background_flower"
+    tools:context=".LeaderBoardActivity">
 
-    <TextView
-
-        android:id="@+id/text"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="set an image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        android:textSize="50dp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="182dp"
+            android:layout_height="182dp"
+            android:src="@drawable/defalultback"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="190dp" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_gravity="center"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
-        <Button
-            android:id="@+id/choseimg"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:paddingRight="10dp"
-            android:text="choose file" />
-
-        <Button
-            android:id="@+id/uploadimg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="upload" />
-
-        <Button
-            android:id="@+id/checkimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="checkimage"
-            android:text="check image" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnDoneUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="ok" />
+         android:src="@drawable/ic_add_black_24dp"
+            app:fabSize="normal"
+            app:layout_anchor="@+id/imageView"
+            app:layout_anchorGravity="end|bottom" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

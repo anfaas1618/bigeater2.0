@@ -4,71 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/good_morning_img"
     tools:context=".RegisterActivity">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="538dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/loginscrn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="80dp"
+            android:fontFamily="cursive"
             android:text="Registration"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
-        <TextView
-            android:id="@+id/fstTxt"
-            android:layout_width="wrap_content"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="20dp"
-            android:text="Full name"/>
-        <EditText
-            android:id="@+id/txtName"
-            android:layout_width="wrap_content"
+            android:textColorHint="#96ffffff">
+
+            <EditText
+                android:id="@+id/txtname"
+                android:layout_width="215dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:drawableRight="@drawable/ic_menu_black_24dp"
+                android:drawablePadding="16dp"
+                android:fontFamily="@font/playfair"
+                android:hint="Name"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:ems="10"/>
-        <TextView
-            android:id="@+id/secTxt"
-            android:layout_width="wrap_content"
+            android:textColorHint="#96ffffff">
+
+            <EditText
+                android:id="@+id/txtemail"
+                android:layout_width="215dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:drawableRight="@drawable/ic_email_white_24dp"
+                android:drawablePadding="16dp"
+                android:fontFamily="@font/playfair"
+                android:hint="Email"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email"
-            android:layout_marginLeft="100dp" />
-        <EditText
-            android:id="@+id/txtEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:ems="10" />
-        <TextView
-            android:id="@+id/thirdTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:layout_marginLeft="100dp" />
-        <EditText
-            android:id="@+id/txtPwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:inputType="textPassword"
-            android:ems="10" />
+            android:textColorHint="#96ffffff">
+
+            <EditText
+                android:id="@+id/txtpwd"
+                android:layout_width="215dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:drawableRight="@drawable/ic_lock_white_24dp"
+                android:drawablePadding="16dp"
+                android:fontFamily="@font/playfair"
+                android:hint="Password"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/thebomob"
             android:layout_marginLeft="100dp"
-            android:text="Login" />
-        <TextView android:id="@+id/lnkLogin"
+            android:textSize="9dp"
+            android:text="sign up" />
+
+        <TextView
+            android:id="@+id/lnkLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_marginTop="40dp"
-            android:text="Already Registered? Login here"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textColor="#3F51B5"
-            android:onClick="test"/>
+            android:fontFamily="cursive"
+            android:gravity="left"
+            android:onClick="test"
+            android:text="Already Registered?\n Login here"
+            android:textColor="#0947AF"
+            android:textSize="30sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

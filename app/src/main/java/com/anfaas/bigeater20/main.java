@@ -1,6 +1,9 @@
 package com.anfaas.bigeater20;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,12 +11,16 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -52,8 +59,11 @@ public class main extends AppCompatActivity {
     private int pinkSpeed;
     private int blackSpeed;
 
+   public boolean isdone=true;
 
     private int score = 0;
+
+    private  LinearLayout layout;
 
 
     private Handler handler = new Handler();
@@ -70,7 +80,11 @@ public class main extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        layout=findViewById(R.id.layoutmainlinear);
 
         sound = new SoundPlayer(this);
 
@@ -117,7 +131,28 @@ public class main extends AppCompatActivity {
 
     public void changePos() {
 
-        hitCheck();
+        if (score>10&&isdone==true) {
+
+    layout.setAlpha(0.5f);
+    layout.animate()
+            .alpha(0f)
+            .setDuration(1000)
+            .setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    layout.setVisibility(View.INVISIBLE);
+                }
+            });
+
+   layout.setBackground(ContextCompat.getDrawable(main.this, R.drawable.good_morning_img));
+    layout.setAlpha(0f);
+    layout.setVisibility(View.VISIBLE);
+    layout.animate()
+            .alpha(1)
+            .setDuration(1000)
+            .setListener(null);
+    isdone=false;
+}     hitCheck();
         orangeX -= orangeSpeed;
         if (orangeX < 0) {
             orangeX = screenWidth + 20;

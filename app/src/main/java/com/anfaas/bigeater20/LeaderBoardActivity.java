@@ -36,6 +36,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
     ListView listView;
     String uid_saved;
     String name_Saved;
+         String  imageid;
     List <UserImage> userImageslist;
     FirebaseUser userAuth;
    FirebaseDatabase database=FirebaseDatabase.getInstance();
@@ -45,9 +46,11 @@ public class LeaderBoardActivity extends AppCompatActivity {
    LoginActivity activity=new LoginActivity();
     User user1;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences namePref=getSharedPreferences("NAME",Context.MODE_PRIVATE);
         name_Saved=namePref.getString("NAME","user");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
         avatarchoosebtn=findViewById(R.id.avatarchange);
@@ -125,11 +128,25 @@ else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
                       }
                       else
                       {
-                          if (scoree > highScore) {
+                          if (scoree > highScore&& IMAGEurl!="null"||IMAGEurl!=null) {
                               playerScore = new PlayerScore(name_Saved, scoree, user1.Uid,IMAGEurl);
 
-                          } else
-                              playerScore = new PlayerScore(name_Saved, highScore, user1.Uid,IMAGEurl);
+                          } else {
+                              imageref.child(uid_saved).addValueEventListener(new ValueEventListener() {
+                                  @Override
+                                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                     imageid=    dataSnapshot.child(uid_saved).child("image_reference").getValue(String.class);
+
+                                  }
+
+                                  @Override
+                                  public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                  }
+                              });
+                              playerScore = new PlayerScore(name_Saved, highScore, user1.Uid, imageid);
+                          }
                       }
                       FirebaseDatabase database=FirebaseDatabase.getInstance();
 //                      Log.i("am",user1.Nane);

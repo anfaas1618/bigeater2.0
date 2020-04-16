@@ -11,7 +11,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView email,password;
+    EditText email,password;
     public  static String IDID;
     public  static String NAME;
-    CardView login;
+    Button login;
    public static FirebaseAuth myAuth;
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     DatabaseReference myREf=database.getReference();
@@ -37,10 +40,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
-        login=findViewById(R.id.btnLogin);
-        email=findViewById(R.id.txtEmail);
-        password=findViewById(R.id.txtPwd);
+        login=findViewById(R.id.l_btnLogin);
+        email=findViewById(R.id.l_txtemail);
+        password=findViewById(R.id.l_txtpwd);
            myAuth=FirebaseAuth.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                                             passwordS,
                                              firebaseUser.getUid(),0);
                             FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-                            Intent intent = new Intent(getBaseContext(), SetImage.class);
+                            Intent intent = new Intent(getBaseContext(), start.class);
                             IDID=currentFirebaseUser.getUid();
                             NAME=currentFirebaseUser.getDisplayName();
                             SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);

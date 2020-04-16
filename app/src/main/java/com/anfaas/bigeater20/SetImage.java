@@ -53,7 +53,6 @@ public class SetImage extends AppCompatActivity {
     FloatingActionButton btnChooseImg;
     Button uploadImage;
     private static final int PICK_IMAGE_REQUEST = 1;
-    ImageView setimage;
     Uri urlupload;
     Uri imageuri;
     String uid_all;

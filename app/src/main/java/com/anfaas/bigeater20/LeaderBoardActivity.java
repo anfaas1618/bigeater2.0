@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LeaderBoardActivity extends AppCompatActivity {
+    private static final String TAG = "LeaderBoardActivity";
     List<PlayerScore> playerScoreList;
  //   String uid;
  int scoree=0;
@@ -64,6 +65,23 @@ public class LeaderBoardActivity extends AppCompatActivity {
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         final SharedPreferences imageurll = getSharedPreferences("IMAGEURL", Context.MODE_PRIVATE);
+         final   SharedPreferences.Editor aeditor=   imageurll.edit();
+        imageref.child(uid_saved).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                imageid=    dataSnapshot.child("image_reference").getValue(String.class);
+                Log.i(TAG, "onDataChange: "+imageid);
+                aeditor.putString("IMAGEURL",imageid);
+                aeditor.commit();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
             final    String IMAGEurl = imageurll.getString("IMAGEURL", "null");
      scoree = getIntent().getIntExtra("SCORE", 0);
@@ -86,12 +104,15 @@ public class LeaderBoardActivity extends AppCompatActivity {
       FirebaseAuth auth= LoginActivity.myAuth;
         SharedPreferences UID= getSharedPreferences("UID", Context.MODE_PRIVATE);
          uid_saved = UID.getString("UID", "0");
+
         if (uid_saved=="0") {
 try {
+
      userAuth = auth.getCurrentUser();
     FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
     DatabaseReference userRef = userDatabase.getReference(userAuth.getUid());
     userRef.child("score").setValue(highScore);
+
 }
 catch (Exception e)
 {
@@ -99,7 +120,10 @@ catch (Exception e)
 }
 
         }
-else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
+else {
+
+
+    FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
     DatabaseReference userRef = userDatabase.getReference(uid_saved);
             userRef.child("score").setValue(highScore);
 }
@@ -121,30 +145,18 @@ else {  FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
                       int highScore = settings.getInt("HIGH_SCORE", 0);
                       if (uid_saved=="0") {
                           if (scoree > highScore) {
-                              playerScore = new PlayerScore(LoginActivity.NAME, scoree, user1.Uid,IMAGEurl);
+                              playerScore = new PlayerScore(LoginActivity.NAME, scoree, user1.Uid,imageid);
 
                           } else
-                              playerScore = new PlayerScore(LoginActivity.NAME, highScore, user1.Uid,IMAGEurl);
+                              playerScore = new PlayerScore(LoginActivity.NAME, highScore, user1.Uid,imageid);
                       }
                       else
                       {
-                          if (scoree > highScore&& IMAGEurl!="null"||IMAGEurl!=null) {
-                              playerScore = new PlayerScore(name_Saved, scoree, user1.Uid,IMAGEurl);
+                          if (scoree > highScore) {
+                              playerScore = new PlayerScore(name_Saved, scoree, user1.Uid,imageid);
 
                           } else {
-                              imageref.child(uid_saved).addValueEventListener(new ValueEventListener() {
-                                  @Override
-                                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                     imageid=    dataSnapshot.child(uid_saved).child("image_reference").getValue(String.class);
-
-                                  }
-
-                                  @Override
-                                  public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                  }
-                              });
                               playerScore = new PlayerScore(name_Saved, highScore, user1.Uid, imageid);
                           }
                       }

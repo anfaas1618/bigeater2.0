@@ -3,17 +3,20 @@ package com.anfaas.bigeater20;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,6 +59,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
+
         avatarchoosebtn=findViewById(R.id.avatarchange);
         avatarchoosebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +68,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 startActivity( new Intent(LeaderBoardActivity.this,SetImage.class));
             }
         });
-        TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
-        TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         final SharedPreferences imageurll = getSharedPreferences("IMAGEURL", Context.MODE_PRIVATE);
          final   SharedPreferences.Editor aeditor=   imageurll.edit();
         Log.i(TAG, "onCreate: error here"+uid_saved);
@@ -88,20 +90,22 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
             final    String IMAGEurl = imageurll.getString("IMAGEURL", "null");
      scoree = getIntent().getIntExtra("SCORE", 0);
-        scoreLabel.setText(scoree + "");
         SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
         int highScore = settings.getInt("HIGH_SCORE", 0);
 
         if (scoree > highScore) {
-            highScoreLabel.setText("High Score : " + scoree);
 
+            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,scoree);
+            gameOver.show();
             // Update High Score
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", scoree);
             editor.commit();
 
         } else {
-            highScoreLabel.setText("High Score : " + highScore);
+
+            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,highScore);
+            gameOver.show();
         }
 
       FirebaseAuth auth= LoginActivity.myAuth;
@@ -230,5 +234,6 @@ else {
 
         return super.dispatchKeyEvent(event);
     }
+
 
 }

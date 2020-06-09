@@ -75,7 +75,7 @@ public class main extends AppCompatActivity {
     private boolean action_flg = false;
     private boolean start_flg = false;
 
-
+    private  int speed=30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,13 +240,17 @@ public class main extends AppCompatActivity {
 
             timer.cancel();
             timer = null;
+            timer=new Timer();
 
             sound.playOverSound();
+              speed=3000;
+            StartTimer();
+             MenuGameOver gameOver = new MenuGameOver(main.this,score,score);
+             gameOver.show();
 
-
-            Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
-            intent.putExtra("SCORE", score);
-            startActivity(intent);
+//            Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
+//            intent.putExtra("SCORE", score);
+//            startActivity(intent);
 
 
         }
@@ -273,18 +277,8 @@ public class main extends AppCompatActivity {
 
 
             startLabel.setVisibility(View.GONE);
+StartTimer();
 
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            changePos();
-                        }
-                    });
-                }
-            }, 0, 30);
 
 
         } else {
@@ -312,5 +306,18 @@ public class main extends AppCompatActivity {
 
         return super.dispatchKeyEvent(event);
     }
-
+void StartTimer ()
+{
+    timer.schedule(new TimerTask() {
+        @Override
+        public void run() {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    changePos();
+                }
+            });
+        }
+    }, 0, speed);
+}
 }

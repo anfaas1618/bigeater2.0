@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Game over "
+        android:textSize="40sp" />
+    <TextView
+        android:id="@+id/scoreLabelDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="150"
+        android:layout_gravity="center"
+        android:textSize="30sp"/>
+    <TextView
+        android:id="@+id/highScoreLabelDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="highsocre:250"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+
+            android:id="@+id/okbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="ok"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

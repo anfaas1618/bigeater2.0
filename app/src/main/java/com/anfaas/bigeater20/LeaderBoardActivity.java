@@ -49,6 +49,8 @@ public class LeaderBoardActivity extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences UID= getSharedPreferences("UID", Context.MODE_PRIVATE);
+        uid_saved = UID.getString("UID", "0");
         SharedPreferences namePref=getSharedPreferences("NAME",Context.MODE_PRIVATE);
         name_Saved=namePref.getString("NAME","user");
 
@@ -66,6 +68,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         final SharedPreferences imageurll = getSharedPreferences("IMAGEURL", Context.MODE_PRIVATE);
          final   SharedPreferences.Editor aeditor=   imageurll.edit();
+        Log.i(TAG, "onCreate: error here"+uid_saved);
         imageref.child(uid_saved).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -102,8 +105,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         }
 
       FirebaseAuth auth= LoginActivity.myAuth;
-        SharedPreferences UID= getSharedPreferences("UID", Context.MODE_PRIVATE);
-         uid_saved = UID.getString("UID", "0");
+
 
         if (uid_saved=="0") {
 try {
@@ -154,9 +156,7 @@ else {
                       {
                           if (scoree > highScore) {
                               playerScore = new PlayerScore(name_Saved, scoree, user1.Uid,imageid);
-
                           } else {
-
                               playerScore = new PlayerScore(name_Saved, highScore, user1.Uid, imageid);
                           }
                       }
@@ -169,20 +169,17 @@ else {
                           } catch (Exception e) {
 
                           }
+
                       }
+
                       else   scoreSet.child(uid_saved).setValue(playerScore);
 
                   }
 
                   @Override
                   public void onCancelled(@NonNull DatabaseError databaseError) {
-
                   }
               });
-
-
-
-
       myRef.addValueEventListener(new ValueEventListener() {
           @Override
           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

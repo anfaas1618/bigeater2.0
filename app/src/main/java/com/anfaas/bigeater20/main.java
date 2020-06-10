@@ -59,6 +59,8 @@ public class main extends AppCompatActivity {
     private int pinkSpeed;
     private int blackSpeed;
 
+    public static boolean isBlackHit=false;
+
    public boolean isdone=true;
 
     private int score = 0;
@@ -75,7 +77,7 @@ public class main extends AppCompatActivity {
     private boolean action_flg = false;
     private boolean start_flg = false;
 
-    private  int speed=30;
+    public static   int speed=30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +132,7 @@ public class main extends AppCompatActivity {
 
 
     public void changePos() {
+
 
         if (score>10&&isdone==true) {
 
@@ -204,7 +207,11 @@ public class main extends AppCompatActivity {
 
     public void hitCheck() {
 
-
+         if (MenuGameOver.isAdLoaded==true)
+         {
+             StartTimer();
+             MenuGameOver.isAdLoaded=false;
+         }
         int orangeCenterX = orangeX + orange.getWidth() / 2;
         int orangeCenterY = orangeY + orange.getHeight() / 2;
 
@@ -235,9 +242,9 @@ public class main extends AppCompatActivity {
         int blackCenterY = blackY + black.getHeight() / 2;
 
         if (0 <= blackCenterX && blackCenterX <= boxSize &&
-                boxY <= blackCenterY && blackCenterY <= boxY + boxSize) {
+                boxY <= blackCenterY && blackCenterY <= boxY + boxSize&& !isBlackHit) {
 
-
+            isBlackHit=true;
             timer.cancel();
             timer = null;
             timer=new Timer();
@@ -248,25 +255,19 @@ public class main extends AppCompatActivity {
              MenuGameOver gameOver = new MenuGameOver(main.this,score,score);
              gameOver.show();
 
+
 //            Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
 //            intent.putExtra("SCORE", score);
 //            startActivity(intent);
 
 
         }
-
-
-
     }
-
-
     public boolean onTouchEvent(MotionEvent me) {
 
         if (start_flg == false) {
 
             start_flg = true;
-
-
 
             FrameLayout frame = (FrameLayout) findViewById(R.id.frame);
             frameHeight = frame.getHeight();

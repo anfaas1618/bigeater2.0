@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 
 import com.anfaas.bigeater20.R;
@@ -20,6 +19,7 @@ public class MenuGameOver extends Dialog  {
     Button ok;
     int score,highscore;
     TextView scoreText,highScoreText;
+  public static   boolean isAdLoaded=false;
     public  Activity c;
 
     @Override
@@ -39,11 +39,12 @@ public class MenuGameOver extends Dialog  {
             public void onClick(View v) {
                 Log.i("sss", "damn 2 "+v.getId());
                 dismiss();
+                main.speed=30;
+                LoadAdInterstetial();
             }
         });
 
     }
-
     public MenuGameOver(Activity a, int score, int highScore) {
         super(a);
         this.c=a;
@@ -51,5 +52,9 @@ public class MenuGameOver extends Dialog  {
         this.highscore=highScore;
     }
 
-
+void LoadAdInterstetial()
+{
+    isAdLoaded=true;
+    main.isBlackHit=false;
+}
 }

@@ -2,11 +2,13 @@ package com.anfaas.bigeater20;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -19,11 +21,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class main extends AppCompatActivity {
@@ -59,14 +71,20 @@ public class main extends AppCompatActivity {
     private int pinkSpeed;
     private int blackSpeed;
 
+    public static int StaticboxSpeed;
+    public static int StaticorangeSpeed;
+    public static int StaticpinkSpeed;
+    public static int StaticblackSpeed;
     public static boolean isBlackHit=false;
 
    public boolean isdone=true;
-
+  private boolean isRewardCollected=false;
     private int score = 0;
 
     private  LinearLayout layout;
 
+
+    public RewardedAd rewardedAd;
 
     private Handler handler = new Handler();
     private Timer timer = new Timer();
@@ -76,7 +94,6 @@ public class main extends AppCompatActivity {
 
     private boolean action_flg = false;
     private boolean start_flg = false;
-
     public static   int speed=30;
 
     @Override
@@ -86,6 +103,10 @@ public class main extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        loadad();
+
+
+
         layout=findViewById(R.id.layoutmainlinear);
 
         sound = new SoundPlayer(this);
@@ -207,11 +228,10 @@ public class main extends AppCompatActivity {
 
     public void hitCheck() {
 
-         if (MenuGameOver.isAdLoaded==true)
-         {
-             StartTimer();
-             MenuGameOver.isAdLoaded=false;
-         }
+        if (MenuGameOver.isRewardCollected)
+        {
+
+        }
         int orangeCenterX = orangeX + orange.getWidth() / 2;
         int orangeCenterY = orangeY + orange.getHeight() / 2;
 
@@ -243,19 +263,37 @@ public class main extends AppCompatActivity {
 
         if (0 <= blackCenterX && blackCenterX <= boxSize &&
                 boxY <= blackCenterY && blackCenterY <= boxY + boxSize&& !isBlackHit) {
-
             isBlackHit=true;
-            timer.cancel();
-            timer = null;
-            timer=new Timer();
+
 
             sound.playOverSound();
-              speed=3000;
+            StaticblackSpeed=blackSpeed;
+            StaticboxSpeed=boxSpeed;
+            StaticpinkSpeed=pinkSpeed;
+            StaticorangeSpeed=orangeSpeed;
+//              blackSpeed=0;
+//              pinkSpeed=0;
+//              orangeSpeed=0;
+//              boxSpeed=0;
+            timer.cancel();
+            timer=null;
+            timer =new Timer();
+            speed =300000;
             StartTimer();
-             MenuGameOver gameOver = new MenuGameOver(main.this,score,score);
+             final MenuGameOver gameOver = new MenuGameOver(main.this,score,score,main.this);
              gameOver.show();
 
 
+         if (isRewardCollected)   gameOver.ok.setVisibility(View.GONE);
+            gameOver.ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Log.i("sss", "damn 2 "+v.getId());
+                    gameOver.dismiss();
+                    showad();
+                }
+            });
 //            Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
 //            intent.putExtra("SCORE", score);
 //            startActivity(intent);
@@ -278,7 +316,8 @@ public class main extends AppCompatActivity {
 
 
             startLabel.setVisibility(View.GONE);
-StartTimer();
+            StartTimer();
+
 
 
 
@@ -321,4 +360,55 @@ void StartTimer ()
         }
     }, 0, speed);
 }
+void  loadad(){
+        rewardedAd =new RewardedAd(main.this,"ca-app-pub-3940256099942544/5224354917");
+        RewardedAdLoadCallback loadCallback =new RewardedAdLoadCallback(){
+            @Override
+            public void onRewardedAdLoaded() {
+                super.onRewardedAdLoaded();
+                //todo add here watch ad
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(int i) {
+                super.onRewardedAdFailedToLoad(i);
+            }
+        };
+        rewardedAd.loadAd(new AdRequest.Builder().build(),loadCallback);
+
+    }
+    void showad()
+    {
+
+        if (rewardedAd.isLoaded())
+        {
+            Activity act= this;
+            RewardedAdCallback rewardedAdCallback=new RewardedAdCallback() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    Log.i(TAG, "onUserEarnedReward: "+"got the ad");
+
+                    isRewardCollected=true;
+                    MenuGameOver.isAdLoaded=true;
+                    blackSpeed=   StaticblackSpeed;
+                    boxSpeed= StaticboxSpeed;
+                    pinkSpeed=   StaticpinkSpeed;
+                    orangeSpeed=  StaticorangeSpeed;
+                   isBlackHit=false;
+                    timer.cancel();
+                    timer=null;
+                    speed=30;
+                   timer=new Timer();
+
+                   StartTimer();
+
+
+                }
+            };
+            rewardedAd.show(this,rewardedAdCallback);
+
+        }
+        else Log.i(TAG, "showad: "+"nope no ad");
+        isBlackHit=false;
+    }
 }

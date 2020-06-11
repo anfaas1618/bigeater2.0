@@ -95,7 +95,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         if (scoree > highScore) {
 
-            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,scoree);
+            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,scoree,LeaderBoardActivity.this);
             gameOver.show();
             // Update High Score
             SharedPreferences.Editor editor = settings.edit();
@@ -104,7 +104,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         } else {
 
-            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,highScore);
+            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,highScore,LeaderBoardActivity.this);
             gameOver.show();
         }
 

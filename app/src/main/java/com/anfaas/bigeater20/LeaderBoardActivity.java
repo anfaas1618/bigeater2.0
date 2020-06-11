@@ -95,25 +95,20 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         if (scoree > highScore) {
 
-            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,scoree,LeaderBoardActivity.this);
-            gameOver.show();
+           //  MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,scoree,LeaderBoardActivity.this);
+           // gameOver.show();
             // Update High Score
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", scoree);
             editor.commit();
 
         } else {
-
-            MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,highScore,LeaderBoardActivity.this);
-            gameOver.show();
+      //       MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,highScore,LeaderBoardActivity.this);
+       //     gameOver.show();
         }
-
       FirebaseAuth auth= LoginActivity.myAuth;
-
-
         if (uid_saved=="0") {
 try {
-
      userAuth = auth.getCurrentUser();
     FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
     DatabaseReference userRef = userDatabase.getReference(userAuth.getUid());

@@ -3,6 +3,7 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:background="#28FFC500"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -20,15 +21,17 @@
         android:layout_gravity="center"
         android:textSize="30sp"/>
     <TextView
-        android:id="@+id/highScoreLabelDialog"
+        android:id="@+id/watchAdDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="highsocre:250"
-        android:layout_gravity="center"/>
+        android:text="watch ad to get extra 1 chance"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_gravity="center">
 
         <Button
@@ -39,9 +42,21 @@
             android:id="@+id/okbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="ok"
+            android:backgroundTint="#FF3D00"
+            android:background="#651FFF"
+            android:text="watch ad"
+            android:textColor="@color/white" />
+        <Button
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+
+            android:id="@+id/try_again_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF3D00"
+            android:background="#651FFF"
+            android:text="try again"
             android:textColor="@color/white" />
     </LinearLayout>
 

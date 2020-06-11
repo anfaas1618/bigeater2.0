@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,7 +14,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +24,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdCallback;
@@ -71,11 +68,9 @@ public class main extends AppCompatActivity {
     private int pinkSpeed;
     private int blackSpeed;
 
-    public static int StaticboxSpeed;
-    public static int StaticorangeSpeed;
-    public static int StaticpinkSpeed;
-    public static int StaticblackSpeed;
+
     public static boolean isBlackHit=false;
+    boolean adseen=false;
 
    public boolean isdone=true;
   private boolean isRewardCollected=false;
@@ -264,17 +259,9 @@ public class main extends AppCompatActivity {
         if (0 <= blackCenterX && blackCenterX <= boxSize &&
                 boxY <= blackCenterY && blackCenterY <= boxY + boxSize&& !isBlackHit) {
             isBlackHit=true;
-
-
             sound.playOverSound();
-            StaticblackSpeed=blackSpeed;
-            StaticboxSpeed=boxSpeed;
-            StaticpinkSpeed=pinkSpeed;
-            StaticorangeSpeed=orangeSpeed;
-//              blackSpeed=0;
-//              pinkSpeed=0;
-//              orangeSpeed=0;
-//              boxSpeed=0;
+            blackX=-80;
+            blackY=-80;
             timer.cancel();
             timer=null;
             timer =new Timer();
@@ -282,10 +269,23 @@ public class main extends AppCompatActivity {
             StartTimer();
              final MenuGameOver gameOver = new MenuGameOver(main.this,score,score,main.this);
              gameOver.show();
-
-
-         if (isRewardCollected)   gameOver.ok.setVisibility(View.GONE);
-            gameOver.ok.setOnClickListener(new View.OnClickListener() {
+         if (isRewardCollected) {
+             gameOver.watchRewardAd.setVisibility(View.GONE);
+             Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
+             intent.putExtra("SCORE", score);
+             startActivity(intent);
+             finish();
+         }
+            gameOver.tryAgainBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
+                    intent.putExtra("SCORE", score);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            gameOver.watchRewardAd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -297,12 +297,13 @@ public class main extends AppCompatActivity {
 //            Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
 //            intent.putExtra("SCORE", score);
 //            startActivity(intent);
-
-
         }
     }
     public boolean onTouchEvent(MotionEvent me) {
-
+               if (adseen)
+               {  StartTimer();
+               adseen=false;
+               }
         if (start_flg == false) {
 
             start_flg = true;
@@ -390,18 +391,14 @@ void  loadad(){
 
                     isRewardCollected=true;
                     MenuGameOver.isAdLoaded=true;
-                    blackSpeed=   StaticblackSpeed;
-                    boxSpeed= StaticboxSpeed;
-                    pinkSpeed=   StaticpinkSpeed;
-                    orangeSpeed=  StaticorangeSpeed;
                    isBlackHit=false;
                     timer.cancel();
                     timer=null;
                     speed=30;
                    timer=new Timer();
 
-                   StartTimer();
 
+                 adseen=true;
 
                 }
             };

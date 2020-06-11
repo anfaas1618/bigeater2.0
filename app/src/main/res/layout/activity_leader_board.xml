@@ -18,6 +18,8 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
         <ListView
+            android:backgroundTint="@color/colorAccent"
+            android:background="@color/colorAccent"
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="312dp"

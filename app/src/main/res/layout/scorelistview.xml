@@ -29,7 +29,8 @@ android:elevation="4dp"
                 android:paddingTop="20dp"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp" />
-        <TextView
+
+            <TextView
             android:id="@+id/nameTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

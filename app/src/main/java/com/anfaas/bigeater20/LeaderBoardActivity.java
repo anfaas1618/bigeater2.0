@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LeaderBoardActivity extends AppCompatActivity {
+public class  LeaderBoardActivity extends AppCompatActivity {
     private static final String TAG = "LeaderBoardActivity";
     List<PlayerScore> playerScoreList;
  //   String uid;

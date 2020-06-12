@@ -5,24 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_material_one"
     tools:context=".LeaderBoardActivity">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="325dp"
-        android:layout_height="313dp"
+        android:layout_width="226dp"
+        android:layout_height="502dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
         <ListView
-            android:backgroundTint="@color/colorAccent"
-            android:background="@color/colorAccent"
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="312dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:backgroundTint="@color/colorAccent"
             android:dividerHeight="10dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="64dp" />
@@ -33,15 +34,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginBottom="44dp"
         android:onClick="tryAgain"
         android:text="Try Again"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        app:layout_constraintVertical_bias="0.979" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

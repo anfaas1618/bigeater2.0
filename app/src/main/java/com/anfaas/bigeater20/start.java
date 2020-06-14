@@ -53,7 +53,8 @@ public class start extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-        if (interstitialAd.isLoaded())
+
+     if (interstitialAd.isLoaded())
             interstitialAd.show();
         else
         {

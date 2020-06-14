@@ -43,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_login);
-        login=findViewById(R.id.l_btnLogin);
-        email=findViewById(R.id.l_txtemail);
-        password=findViewById(R.id.l_txtpwd);
+               setContentView(R.layout.activity_login);
+               login=findViewById(R.id.l_btnLogin);
+               email=findViewById(R.id.l_txtemail);
+               password=findViewById(R.id.l_txtpwd);
            myAuth=FirebaseAuth.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
             @Override

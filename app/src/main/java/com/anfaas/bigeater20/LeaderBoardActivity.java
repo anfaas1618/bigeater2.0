@@ -208,7 +208,7 @@ else {
 
     }
     public void tryAgain(View view) {
-        startActivity(new Intent(getApplicationContext(), start.class));
+        startActivity(new Intent(getApplicationContext(), main.class));
     }
     public   void name(View view)
     {

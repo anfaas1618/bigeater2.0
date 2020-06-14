@@ -34,6 +34,9 @@ public class ScoreAdapter extends ArrayAdapter<PlayerScore> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
         View myView=inflater.inflate(R.layout.scorelistview,null,true);
+        TextView rank = myView.findViewById(R.id.rank_id);
+        int rank_int= position+1;
+        rank.setText(String.format(" %d ", rank_int));
         TextView name=myView.findViewById(R.id.nameTxt);
         TextView score=myView.findViewById(R.id.scoreTxt);
         CircleImageView circleImageView =myView.findViewById(R.id.list_image);

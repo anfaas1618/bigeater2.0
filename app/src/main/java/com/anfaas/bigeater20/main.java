@@ -100,7 +100,11 @@ public class main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loadad();
 
+         isBlackHit=false;
+     adseen=false;
 
+         isdone=true;
+         isRewardCollected=false;
 
         layout=findViewById(R.id.layoutmainlinear);
 

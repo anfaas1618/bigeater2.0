@@ -27,7 +27,8 @@ public class start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+   Context context;
+   interstitialAd =new InterstitialAd(this);
        displayInterstitial();
 
     }
@@ -53,7 +54,7 @@ public class start extends AppCompatActivity {
     }
 
     public void startGame(View view) {
-
+        displayInterstitial();
      if (interstitialAd.isLoaded())
             interstitialAd.show();
         else

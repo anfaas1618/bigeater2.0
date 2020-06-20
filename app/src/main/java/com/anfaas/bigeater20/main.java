@@ -38,8 +38,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class main extends AppCompatActivity {
 
     Intent intent;
-    public final static String USERNAME = "com.example.myfirstapp.MESSAGE";
-    public final static String EMAIL = "com.example.myfirstapp.EMAIL";
+
     private TextView scoreLabel;
     private TextView startLabel;
     private ImageView box;
@@ -69,7 +68,9 @@ public class main extends AppCompatActivity {
     private int blackSpeed;
 
 
-    public static boolean isBlackHit=false;
+    public boolean isBlackHit=false;
+    public    boolean isAdLoaded=false;
+
     boolean adseen=false;
 
    public boolean isdone=true;
@@ -89,7 +90,7 @@ public class main extends AppCompatActivity {
 
     private boolean action_flg = false;
     private boolean start_flg = false;
-    public static   int speed=30;
+    public   int speed=30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,7 @@ public class main extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         loadad();
+
 
          isBlackHit=false;
      adseen=false;
@@ -227,7 +229,7 @@ public class main extends AppCompatActivity {
 
     public void hitCheck() {
 
-        if (MenuGameOver.isRewardCollected)
+        if (isRewardCollected)
         {
 
         }
@@ -394,7 +396,7 @@ void  loadad(){
                     Log.i(TAG, "onUserEarnedReward: "+"got the ad");
 
                     isRewardCollected=true;
-                    MenuGameOver.isAdLoaded=true;
+                    isAdLoaded=true;
                    isBlackHit=false;
                     timer.cancel();
                     timer=null;

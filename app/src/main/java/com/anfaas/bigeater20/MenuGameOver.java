@@ -13,12 +13,12 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class MenuGameOver extends Dialog  {
     Button watchRewardAd,tryAgainBtn;
 
-   public   static  boolean isRewardCollected=false;
+   public     boolean isRewardCollected=false;
      Activity activity;
     int score,highscore;
     TextView scoreText,highScoreText;
 
-  public static   boolean isAdLoaded=false;
+
     public  Activity c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

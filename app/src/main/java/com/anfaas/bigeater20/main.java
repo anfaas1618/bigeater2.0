@@ -37,7 +37,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class main extends AppCompatActivity {
 
-    Intent intent;
 
     private TextView scoreLabel;
     private TextView startLabel;

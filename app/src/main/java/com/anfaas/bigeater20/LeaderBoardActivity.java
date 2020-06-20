@@ -192,7 +192,7 @@ else {
 
               Collections.sort(playerScoreList);
               Collections.reverse(playerScoreList);
-              ScoreAdapter fruitsAdapter=new ScoreAdapter(LeaderBoardActivity.this,playerScoreList);
+              ScoreAdapter fruitsAdapter=new ScoreAdapter(LeaderBoardActivity.this,playerScoreList,name_Saved);
 
               listView.setAdapter(fruitsAdapter);
 

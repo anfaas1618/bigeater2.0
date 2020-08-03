@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
@@ -412,6 +413,33 @@ void  loadad(){
         }
         else {
          //   Log.i(TAG, "showad: " + "nope no ad");
+            final DialogWaitRewardAd waitRewardAd= new DialogWaitRewardAd(this);
+            final boolean[] cancel = {false};
+            waitRewardAd.show();
+            waitRewardAd.cancelWait.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cancel[0] =true;
+                    Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
+                    intent.putExtra("SCORE", score);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            new CountDownTimer(10000, 1000){
+                public void onTick(long millisUntilFinished){
+
+                }
+                public  void onFinish(){
+                    if (cancel[0] ==false)
+                    {
+                        showad();
+                        waitRewardAd.dismiss();
+                    }
+
+                }
+            }.start();
+
         }
         isBlackHit=false;
     }

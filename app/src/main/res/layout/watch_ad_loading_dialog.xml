@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:background="#28FFC500"
@@ -37,7 +36,7 @@
             android:gravity="center"
             android:textAlignment="center"
 
-            android:id="@+id/try_again_btn"
+            android:id="@+id/cancelWaitTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#FF3D00"

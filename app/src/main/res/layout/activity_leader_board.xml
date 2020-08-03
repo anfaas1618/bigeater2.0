@@ -61,13 +61,29 @@
         android:onClick="tryAgain"
         android:text="Try Again"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toStartOf="@+id/avatarchange"
+        android:layout_toEndOf="@+id/button"
+        android:onClick="gohome"
+        android:text="home"
+        android:textAllCaps="false" />
+
     <Button
         android:id="@+id/avatarchange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="6dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:text="change avatar" />
 </RelativeLayout>

@@ -410,7 +410,9 @@ void  loadad(){
             rewardedAd.show(this,rewardedAdCallback);
 
         }
-        else Log.i(TAG, "showad: "+"nope no ad");
+        else {
+         //   Log.i(TAG, "showad: " + "nope no ad");
+        }
         isBlackHit=false;
     }
 }

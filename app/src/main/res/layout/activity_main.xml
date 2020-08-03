@@ -14,6 +14,7 @@
         android:layout_height="50dp"
         android:text="Score : 300"
         android:textSize="18sp"
+        android:textColor="#76FF03"
         android:paddingLeft="10dp"
         android:gravity="center_vertical"/>
 
@@ -28,8 +29,9 @@
             android:layout_height="wrap_content"
             android:text="Tap to Start"
             android:textSize="30sp"
+            android:textColor="#FAFAFA"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="130dp"/>
+            android:layout_marginTop="100dp"/>
 
         <ImageView
             android:id="@+id/box"

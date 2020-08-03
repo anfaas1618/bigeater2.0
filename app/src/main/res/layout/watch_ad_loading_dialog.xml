@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:background="#28FFC500"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+ <ProgressBar
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_gravity="center"
+     android:layout_marginTop="40dp"
+     android:layout_marginBottom="20dp"
+/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:textColor="#F50057"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
+        android:text="waiting for your reward ad"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+
+        <Button
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+
+            android:id="@+id/try_again_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF3D00"
+            android:background="#651FFF"
+            android:textSize="20sp"
+            android:text="cancel"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

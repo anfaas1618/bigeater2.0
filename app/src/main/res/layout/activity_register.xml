@@ -24,7 +24,7 @@
             android:layout_marginTop="80dp"
             android:fontFamily="cursive"
             android:text="Registration"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,7 +44,7 @@
                 android:textColorHint="@color/colorPrimaryDark"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colors"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 

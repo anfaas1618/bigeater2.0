@@ -210,6 +210,10 @@ else {
     public void tryAgain(View view) {
         startActivity(new Intent(getApplicationContext(), main.class));
     }
+    public void gohome(View view)
+    {
+        startActivity(new Intent(this,start.class));
+    }
     public   void name(View view)
     {
 

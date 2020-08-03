@@ -49,7 +49,7 @@ public class ScoreAdapter extends ArrayAdapter<PlayerScore> {
 
         name.setText(score1.getName());
         //Uri imageUri=Uri.parse(score1.getImageurl());
-        Picasso.get().load(score1.getImageurl()).into(circleImageView);
+        Picasso.get().load(score1.getImageurl()).placeholder(R.drawable.ic_baseline_perm_contact_calendar_24).into(circleImageView);
         score.setText(String.valueOf(score1.getScore()));
         if (current_player_name.equals(score1.getName())){
 

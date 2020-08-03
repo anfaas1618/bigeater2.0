@@ -384,63 +384,68 @@ void  loadad(){
         rewardedAd.loadAd(new AdRequest.Builder().build(),loadCallback);
 
     }
-    void showad()
-    {
+    boolean doneWating=false;
+    void showad() {
+        if (doneWating == true) {
+            Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
+            intent.putExtra("SCORE", score);
+            startActivity(intent);
+            finish();
+        } else {
+            if (rewardedAd.isLoaded()) {
+                Activity act = this;
+                RewardedAdCallback rewardedAdCallback = new RewardedAdCallback() {
+                    @Override
+                    public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                        Log.i(TAG, "onUserEarnedReward: " + "got the ad");
 
-        if (rewardedAd.isLoaded())
-        {
-            Activity act= this;
-            RewardedAdCallback rewardedAdCallback=new RewardedAdCallback() {
-                @Override
-                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                    Log.i(TAG, "onUserEarnedReward: "+"got the ad");
-
-                    isRewardCollected=true;
-                    isAdLoaded=true;
-                   isBlackHit=false;
-                    timer.cancel();
-                    timer=null;
-                    speed=30;
-                   timer=new Timer();
+                        isRewardCollected = true;
+                        isAdLoaded = true;
+                        isBlackHit = false;
+                        timer.cancel();
+                        timer = null;
+                        speed = 30;
+                        timer = new Timer();
 
 
-                 adseen=true;
+                        adseen = true;
 
-                }
-            };
-            rewardedAd.show(this,rewardedAdCallback);
+                    }
+                };
+                rewardedAd.show(this, rewardedAdCallback);
 
-        }
-        else {
-         //   Log.i(TAG, "showad: " + "nope no ad");
-            final DialogWaitRewardAd waitRewardAd= new DialogWaitRewardAd(this);
-            final boolean[] cancel = {false};
-            waitRewardAd.show();
-            waitRewardAd.cancelWait.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    cancel[0] =true;
-                    Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
-                    intent.putExtra("SCORE", score);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-            new CountDownTimer(10000, 1000){
-                public void onTick(long millisUntilFinished){
+            } else {
+                //   Log.i(TAG, "showad: " + "nope no ad");
+                final DialogWaitRewardAd waitRewardAd = new DialogWaitRewardAd(this);
+                final boolean[] cancel = {false};
+                waitRewardAd.show();
+                waitRewardAd.cancelWait.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cancel[0] = true;
+                        Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
+                        intent.putExtra("SCORE", score);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                new CountDownTimer(10000, 1000) {
+                    public void onTick(long millisUntilFinished) {
 
-                }
-                public  void onFinish(){
-                    if (cancel[0] ==false)
-                    {
-                        showad();
-                        waitRewardAd.dismiss();
                     }
 
-                }
-            }.start();
+                    public void onFinish() {
+                        doneWating=true;
+                        if (cancel[0] == false) {
+                            showad();
+                            waitRewardAd.dismiss();
+                        }
 
+                    }
+                }.start();
+
+            }
+            isBlackHit = false;
         }
-        isBlackHit=false;
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     String nameS,emailS,passS;
 TextView name,email,password;
 Button loginBtn;
+ProgressBar signUpProgressBar;
 FirebaseDatabase database= FirebaseDatabase.getInstance();
 DatabaseReference myRef=database.getReference();
 public  static FirebaseAuth myAuth;
@@ -49,9 +51,12 @@ String uID;
         email=findViewById(R.id.txtemail);
         password=findViewById(R.id.txtpwd);
         loginBtn=findViewById(R.id.btnLogin);
+        signUpProgressBar=findViewById(R.id.signUpProgressBar);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginBtn.setVisibility(View.GONE);
+                signUpProgressBar.setVisibility(View.VISIBLE);
                 final String nameS,emailS,passS;
                 nameS=name.getText().toString();
                 emailS=email.getText().toString();
@@ -61,7 +66,8 @@ String uID;
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
-                        { SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
+                        {
+                            SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putInt("HIGH_SCORE", 0);
                             editor.commit();
@@ -77,6 +83,11 @@ String uID;
                             addUser();
                             login();
 
+                        }
+                        else {
+                            Toast.makeText(RegisterActivity.this,"check your email and password" , Toast.LENGTH_LONG).show();//todo add a proper error dialog
+                            loginBtn.setVisibility(View.VISIBLE);
+                            signUpProgressBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -103,7 +114,7 @@ String uID;
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
-                {
+                {signUpProgressBar.setVisibility(View.GONE);
                     Toast.makeText(RegisterActivity.this, "login sucess", Toast.LENGTH_SHORT).show();
                     FirebaseUser firebaseUser=myAuth.getCurrentUser();
 

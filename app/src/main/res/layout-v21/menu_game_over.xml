@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#FF3D00"
             android:background="#651FFF"
-            android:text="try again"
+            android:text="no thanks"
             android:textColor="@color/white" />
     </LinearLayout>
 

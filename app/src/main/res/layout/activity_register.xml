@@ -63,10 +63,11 @@
                 android:drawablePadding="16dp"
                 android:fontFamily="@font/playfair"
                 android:hint="Email"
+
                 android:textColorHint="@color/colorPrimaryDark"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colors"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -84,9 +85,9 @@
                 android:fontFamily="@font/playfair"
                 android:hint="Password"
                 android:textColorHint="@color/colorPrimaryDark"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:maxLines="1"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colors"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,6 +101,13 @@
             android:layout_marginLeft="100dp"
             android:textSize="9dp"
             android:text="sign up" />
+        <ProgressBar
+            android:id="@+id/signUpProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginLeft="100dp"/>
+
 
         <TextView
             android:id="@+id/lnkLogin"
@@ -107,11 +115,21 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="40dp"
+            android:textStyle="bold"
             android:fontFamily="cursive"
             android:gravity="left"
             android:onClick="test"
             android:text="Already Registered?\n Login here"
-            android:textColor="#0947AF"
-            android:textSize="30sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="28dp" />
+        <Button
+            android:id="@+id/guest"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/thebomob"
+            android:layout_marginLeft="100dp"
+            android:textSize="10dp"
+            android:text="guest login" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

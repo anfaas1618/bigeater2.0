@@ -200,6 +200,7 @@ catch ( Exception e)
         }
         else
         {
+            Toast.makeText(SetImage.this, "please choose a image", Toast.LENGTH_SHORT).show();
             skipUpload.setVisibility(View.VISIBLE);
             uploadImage.setVisibility(View.VISIBLE);
             uploadProgress.setVisibility(View.GONE);

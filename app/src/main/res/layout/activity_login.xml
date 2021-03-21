@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="0dp"
             android:fontFamily="cursive"
             android:text="Login"
             android:textSize="50dp"
@@ -36,7 +36,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="#96ffffff">
+            android:layout_marginTop="69dp"
+            android:textColorHint="#9C27B0">
 
             <EditText
                 android:id="@+id/l_txtemail"
@@ -47,7 +48,9 @@
                 android:drawablePadding="16dp"
                 android:fontFamily="@font/playfair"
                 android:hint="Email"
-                android:textColorHint="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textColorHighlight="@color/browser_actions_bg_grey"
+                android:textColorHint="#ff0000"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textColor="@color/colorAccent"
@@ -56,7 +59,8 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="#96ffffff">
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C27B0">
 
             <EditText
                 android:id="@+id/l_txtpwd"
@@ -67,35 +71,42 @@
                 android:drawablePadding="16dp"
                 android:fontFamily="@font/playfair"
                 android:hint="Password"
-                android:textColorHint="@color/colorPrimaryDark"
+
+                android:textColorHint="#ff0000"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp">
+    <Button
+        android:id="@+id/l_btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/thebomob"
+        android:layout_marginLeft="100dp"
+        android:textSize="9dp"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/l_lnkLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/thebomob"
+        android:layout_marginLeft="20dp"
+        android:textSize="9dp"
+        android:onClick="test"
+        android:text="Register" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
 
 
-        <Button
-            android:id="@+id/l_btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/thebomob"
-            android:layout_marginLeft="100dp"
-            android:textSize="9dp"
-            android:text="Login" />
 
-        <TextView
-            android:id="@+id/l_lnkLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="40dp"
-            android:fontFamily="cursive"
-            android:gravity="left"
-            android:onClick="test"
-            android:text="@string/registerhere"
-            android:textColor="#0947AF"
-            android:textSize="30sp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

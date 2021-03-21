@@ -2,11 +2,14 @@ package com.anfaas.bigeater20;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -51,7 +54,7 @@ public class SetImage extends AppCompatActivity {
     private static final String TAG = "setimage";
     BottomAppBar bar;
     FloatingActionButton btnChooseImg;
-    Button uploadImage;
+    Button uploadImage,skipUpload;
     private static final int PICK_IMAGE_REQUEST = 1;
     Uri urlupload;
     Uri imageuri;
@@ -76,9 +79,19 @@ public class SetImage extends AppCompatActivity {
         btnChooseImg=findViewById(R.id.fabsetimage);
         uploadImage=findViewById(R.id.uploadbtn);
         setImageCircle=findViewById(R.id.circleimageview);
+        skipUpload =findViewById(R.id.skipupload);
+        skipUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(   new Intent(SetImage.this, start.class));
+            }
+        });
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog dialog=new ProgressDialog(getApplicationContext());
+                dialog.setTitle("hello");
+                dialog.show();
                 uploadFirebase();
             }
         });

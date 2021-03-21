@@ -198,6 +198,12 @@ catch ( Exception e)
             });
 
         }
+        else
+        {
+            skipUpload.setVisibility(View.VISIBLE);
+            uploadImage.setVisibility(View.VISIBLE);
+            uploadProgress.setVisibility(View.GONE);
+        }
     }
 
     private  void uploadImage()

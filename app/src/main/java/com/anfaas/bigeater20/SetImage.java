@@ -20,6 +20,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,6 +61,7 @@ public class SetImage extends AppCompatActivity {
     Uri imageuri;
     String uid_all;
     String email, password;
+    ProgressBar uploadProgress;
     CircleImageView setImageCircle;
 
     DatabaseReference myref;
@@ -80,6 +82,7 @@ public class SetImage extends AppCompatActivity {
         uploadImage=findViewById(R.id.uploadbtn);
         setImageCircle=findViewById(R.id.circleimageview);
         skipUpload =findViewById(R.id.skipupload);
+        uploadProgress=findViewById(R.id.uploadProgress);
         skipUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,9 +92,9 @@ public class SetImage extends AppCompatActivity {
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog dialog=new ProgressDialog(getApplicationContext());
-                dialog.setTitle("hello");
-                dialog.show();
+            uploadImage.setVisibility(View.GONE);
+            uploadProgress.setVisibility(View.VISIBLE);
+            skipUpload.setVisibility(View.GONE);
                 uploadFirebase();
             }
         });
@@ -118,7 +121,6 @@ public class SetImage extends AppCompatActivity {
             });
         }
 
-
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         myref=database.getReference("uploads");
         btnChooseImg.setOnClickListener(new View.OnClickListener() {
@@ -144,11 +146,7 @@ public class SetImage extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(SetImage.this, "sucess", Toast.LENGTH_SHORT).show();
-
-
 try {
-
-
 
     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
         @Override
@@ -162,7 +160,6 @@ try {
             edit_name.commit();
             UserImage image = new UserImage(uid_all, urlupload.toString());
             myref.child(uid_all).setValue(image);
-
 
         }
     });
@@ -185,8 +182,12 @@ try {
 
     if (imageuri!=null)
         startActivity(   new Intent(SetImage.this, start.class));
-    else
+    else {
         Toast.makeText(SetImage.this, "please choose a image", Toast.LENGTH_SHORT).show();
+        skipUpload.setVisibility(View.VISIBLE);
+        uploadImage.setVisibility(View.VISIBLE);
+        uploadProgress.setVisibility(View.GONE);
+    }
 }
 catch ( Exception e)
 {
@@ -199,17 +200,6 @@ catch ( Exception e)
         }
     }
 
-    public  void checkimage(View view)
-    {   Log.i("kkk",urlupload.toString());
-        try
-        {
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
     private  void uploadImage()
 {
 //    Intent intent=new Intent();

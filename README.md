@@ -34,37 +34,37 @@ a user friendly material design firebase game to store values and a leaderboard 
 
 Image:
 
-![](https://i.imgur.com/PSk5oWr.png =250x250)
+![](https://i.imgur.com/PSk5oWr.png) {width=250}
 
 > Register Activity
 
-![](https://i.imgur.com/5UB3Gq2.png =250x250)
+![](https://i.imgur.com/5UB3Gq2.png)
 
 > Login Activity
-![](https://i.imgur.com/oA283Va.png =250x250)
+![](https://i.imgur.com/oA283Va.png)
 
 > Register User
-![](https://i.imgur.com/zldzfFZ.png =250x250)
+![](https://i.imgur.com/zldzfFZ.png)
 
 > Upload Image Activity
-![](https://i.imgur.com/QoOZNYN.png =250x250)
+![](https://i.imgur.com/QoOZNYN.png)
 
 > Image loading Activity
-![](https://i.imgur.com/GzSpdGg.png =250x250)
+![](https://i.imgur.com/GzSpdGg.png)
 
 > Start Game
-![](https://i.imgur.com/qkmqAEf.png =250x250)
+![](https://i.imgur.com/qkmqAEf.png)
 
 > Ad in game
-![](https://i.imgur.com/5xnVqaC.png =250x250)
+![](https://i.imgur.com/5xnVqaC.png)
 
 > Game play
-![](https://i.imgur.com/xe4PCpB.png =250x250)
+![](https://i.imgur.com/xe4PCpB.png)
 
 > Game play
-![](https://i.imgur.com/ZJhCHjp.png =250x250)
+![](https://i.imgur.com/ZJhCHjp.png)
 
 > Dialog box watch ad or skip
-![](https://i.imgur.com/FgAJYj1.png =250x250)
+![](https://i.imgur.com/FgAJYj1.png)
 
 > Watch Ad

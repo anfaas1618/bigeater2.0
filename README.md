@@ -38,7 +38,7 @@ Image:
 
 > Register Activity
 
-![](https://i.imgur.com/5UB3Gq2.png)
+![]([https://i.imgur.com/5UB3Gq2.png](https://camo.githubusercontent.com/4bd89df0dd417f71af2d592035dda6263ff1956c9fa01723e8b7be3acff52152/68747470733a2f2f692e696d6775722e636f6d2f50536b356f57722e706e67))
 
 > Login Activity
 ![](https://i.imgur.com/oA283Va.png)

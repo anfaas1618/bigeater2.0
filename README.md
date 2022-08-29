@@ -34,7 +34,7 @@ a user friendly material design firebase game to store values and a leaderboard 
 
 Image:
 
-![](https://i.imgur.com/PSk5oWr.png) {width=250}
+![](https://i.imgur.com/PSk5oWr.png)
 
 > Register Activity
 

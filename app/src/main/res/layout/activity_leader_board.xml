@@ -20,24 +20,26 @@
         android:textColor="#FF3D00"
         android:textSize="40sp"
         android:textStyle="bold" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="297dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/avatarchange"
+
+        android:layout_above="@+id/bottombar"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="19dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="19dp"
-        android:layout_marginBottom="7dp"
-        android:background="@color/colorAccent"
-        android:backgroundTint="#0000E5FF"
         android:adjustViewBounds="true"
-        app:layout_constraintBottom_toTopOf="@+id/avatarchange"
+        android:background="@color/colorAccent"
+
+        android:backgroundTint="#0000E5FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
@@ -46,44 +48,44 @@
             android:cacheColorHint="#00000000"
 
             android:dividerHeight="10dp"
+
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="64dp" />
     </androidx.cardview.widget.CardView>
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginBottom="5dp"
-        android:onClick="tryAgain"
-        android:text="Try Again"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="5dp"
-        android:layout_toStartOf="@+id/avatarchange"
-        android:layout_toEndOf="@+id/button"
-        android:onClick="gohome"
-        android:text="home"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/avatarchange"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/bottombar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="change avatar" />
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="tryAgain"
+            android:text="Try Again"
+            android:layout_margin="10dp"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+
+            android:onClick="gohome"
+            android:text="home"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/avatarchange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="avatar" />
+    </LinearLayout>
+
 </RelativeLayout>

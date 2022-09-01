@@ -208,6 +208,7 @@ else {
 
     }
     public void tryAgain(View view) {
+
         startActivity(new Intent(getApplicationContext(), main.class));
     }
     public void gohome(View view)

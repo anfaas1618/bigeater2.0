@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/DRAKH/AndroidStudioProjects/bigeater2.02/app/src/main/res/layout/activity_leader_board.xml" value="0.22" />
+        <entry key="..\:/Users/DRAKH/AndroidStudioProjects/bigeater2.02/app/src/main/res/layout/activity_register.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/DRAKH/AndroidStudioProjects/bigeater2.02/app/src/main/res/layout/activity_set_image.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/DRAKH/AndroidStudioProjects/bigeater2.02/app/src/main/res/layout/activity_start.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/DRAKH/AndroidStudioProjects/bigeater2.02/app/src/main/res/layout/menu_game_over.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/DRAKH/AndroidStudioProjects/bigeater2.02/app/src/main/res/layout/scorelistview.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/DRAKH/AndroidStudioProjects/bigeater2.02/app/src/main/res/layout/watch_ad_loading_dialog.xml" value="0.2" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

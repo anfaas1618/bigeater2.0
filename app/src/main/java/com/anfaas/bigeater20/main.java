@@ -156,7 +156,7 @@ public class main extends AppCompatActivity {
     public void changePos() {
 
 
-        if (score>10&&isdone==true) {
+        if (score>10&& isdone) {
 
     layout.setAlpha(0.5f);
     layout.animate()
@@ -274,19 +274,21 @@ public class main extends AppCompatActivity {
             speed =300000;
             StartTimer();
              final MenuGameOver gameOver = new MenuGameOver(main.this,score,score,main.this);
-             gameOver.show();
-         if (isRewardCollected) {
-             gameOver.watchRewardAd.setVisibility(View.GONE);
-             Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
-             intent.putExtra("SCORE", score);
-             startActivity(intent);
-             finish();
-         }
+            if (isRewardCollected) {
+                gameOver.watchRewardAd.setVisibility(View.GONE);
+                Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
+                intent.putExtra("SCORE", score);
+                startActivity(intent);
+                finish();
+            }
+         gameOver.show();
+
             gameOver.tryAgainBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
                     intent.putExtra("SCORE", score);
+                    gameOver.dismiss();
                     startActivity(intent);
                     finish();
                 }
@@ -386,7 +388,7 @@ void  loadad(){
     }
     boolean doneWating=false;
     void showad() {
-        if (doneWating == true) {
+        if (doneWating) {
             Intent intent = new Intent(getApplicationContext(), LeaderBoardActivity.class);
             intent.putExtra("SCORE", score);
             startActivity(intent);
@@ -436,7 +438,7 @@ void  loadad(){
 
                     public void onFinish() {
                         doneWating=true;
-                        if (cancel[0] == false) {
+                        if (!cancel[0]) {
                             showad();
                             waitRewardAd.dismiss();
                         }

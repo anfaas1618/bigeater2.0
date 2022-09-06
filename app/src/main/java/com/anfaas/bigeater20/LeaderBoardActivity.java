@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class  LeaderBoardActivity extends AppCompatActivity {
     private static final String TAG = "LeaderBoardActivity";
@@ -54,6 +55,7 @@ public class  LeaderBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences UID= getSharedPreferences("UID", Context.MODE_PRIVATE);
         uid_saved = UID.getString("UID", "0");
+        Helper.UID = uid_saved;
         SharedPreferences namePref=getSharedPreferences("NAME",Context.MODE_PRIVATE);
         name_Saved=namePref.getString("NAME","user");
 
@@ -102,23 +104,22 @@ public class  LeaderBoardActivity extends AppCompatActivity {
             editor.putInt("HIGH_SCORE", scoree);
             editor.commit();
 
-        } else {
-      //       MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,highScore,LeaderBoardActivity.this);
-       //     gameOver.show();
-        }
-      FirebaseAuth auth= LoginActivity.myAuth;
-        if (uid_saved=="0") {
-try {
-     userAuth = auth.getCurrentUser();
-    FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference userRef = userDatabase.getReference(userAuth.getUid());
-    userRef.child("score").setValue(highScore);
+        }  //       MenuGameOver gameOver= new MenuGameOver(LeaderBoardActivity.this, scoree,highScore,LeaderBoardActivity.this);
+        //     gameOver.show();
 
-}
-catch (Exception e)
-{
-    Log.i("error",e.toString());
-}
+        FirebaseAuth auth= LoginActivity.myAuth;
+        if (uid_saved=="0") {
+            try {
+                 userAuth = auth.getCurrentUser();
+                FirebaseDatabase userDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference userRef = userDatabase.getReference(userAuth.getUid());
+                userRef.child("score").setValue(highScore);
+
+            }
+            catch (Exception e)
+            {
+                Log.i("error",e.toString());
+            }
 
         }
 else {
@@ -131,7 +132,7 @@ else {
         listView=findViewById(R.id.list);
         playerScoreList=new ArrayList<PlayerScore>();
         userImageslist =new ArrayList<>();
- //  String Uid=     activity.user.Uid;
+ // String Uid=     activity.user.Uid;
 
 
            FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
@@ -141,7 +142,8 @@ else {
                   @Override
                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                       PlayerScore playerScore;
-                       user1=dataSnapshot.getValue(User.class);
+                       user1= Objects.requireNonNull(dataSnapshot.getValue(User.class));
+                       user1.Uid = Helper.UID;
                       SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
                       int highScore = settings.getInt("HIGH_SCORE", 0);
                       if (uid_saved=="0") {
@@ -192,7 +194,7 @@ else {
 
               Collections.sort(playerScoreList);
               Collections.reverse(playerScoreList);
-              ScoreAdapter fruitsAdapter=new ScoreAdapter(LeaderBoardActivity.this,playerScoreList,name_Saved);
+              ScoreAdapter fruitsAdapter=new ScoreAdapter(LeaderBoardActivity.this,playerScoreList,Helper.UID);
 
               listView.setAdapter(fruitsAdapter);
 
@@ -217,12 +219,7 @@ else {
     }
     public   void name(View view)
     {
-
-
     }
-
-
-
     public boolean dispatchKeyEvent(KeyEvent event) {
 
         if (event.getAction() == KeyEvent.ACTION_DOWN) {

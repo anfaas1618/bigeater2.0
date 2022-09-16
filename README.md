@@ -12,7 +12,7 @@ a user friendly material design firebase game to store values and a leaderboard 
 -	smooth controls
 # BigEater 2.0.md
 
-
+![](https://play-lh.googleusercontent.com/pf73akQJHIypOH-ytR9L5LezVFb841Ig8ozEkR3NtqM0aEQOcq-yvReW1fpL3tFUd35a=w240-h480-rw)
 
 
 

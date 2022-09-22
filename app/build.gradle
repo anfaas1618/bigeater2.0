@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.anfaas.bigeater20"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:16.0.5'
     testImplementation 'junit:junit:4.12'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.firebaseui:firebase-ui-:3.1.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

@@ -20,9 +20,8 @@
         android:textColor="#FF3D00"
         android:textSize="40sp"
         android:textStyle="bold" />
-
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/guestCard"
         android:layout_width="297dp"
         android:layout_height="wrap_content"
 
@@ -35,12 +34,73 @@
         android:layout_marginEnd="19dp"
         android:adjustViewBounds="true"
         android:background="@color/colorAccent"
+        android:backgroundTint="#0000E5FF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout
+            android:id="@+id/guestLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                app:cardCornerRadius="40dp"
+                android:padding="10dp"
+                android:layout_margin="20dp"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#FFE928"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="55dp"
+                    android:textColor="#673AB7"
+                    android:gravity="center"
+                    android:text="Login To Check LeaderBoard">
 
+                </TextView>
+            </androidx.cardview.widget.CardView>
+            <Button
+                android:id="@+id/loginFromGuest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="45dp"
+                android:text="Login"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/guestCard2"
+        android:layout_width="297dp"
+        android:layout_height="wrap_content"
+
+        android:layout_above="@+id/bottombar"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="19dp"
+        android:adjustViewBounds="true"
+        android:background="@color/colorAccent"
         android:backgroundTint="#0000E5FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+
         <ListView
+            android:visibility="gone"
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

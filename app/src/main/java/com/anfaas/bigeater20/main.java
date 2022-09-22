@@ -370,7 +370,7 @@ void StartTimer ()
     }, 0, speed);
 }
 void  loadad(){
-        rewardedAd =new RewardedAd(main.this,"ca-app-pub-3940256099942544/5224354917");
+        rewardedAd =new RewardedAd(main.this,"ca-app-pub-4112378949427472/2186588449");
         RewardedAdLoadCallback loadCallback =new RewardedAdLoadCallback(){
             @Override
             public void onRewardedAdLoaded() {
@@ -400,7 +400,6 @@ void  loadad(){
                     @Override
                     public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
                         Log.i(TAG, "onUserEarnedReward: " + "got the ad");
-
                         isRewardCollected = true;
                         isAdLoaded = true;
                         isBlackHit = false;

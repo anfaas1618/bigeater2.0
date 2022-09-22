@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterActivity extends AppCompatActivity {
     String nameS,emailS,passS;
 TextView name,email,password;
-Button loginBtn;
+Button loginBtn,guestBtn;
 ProgressBar signUpProgressBar;
 FirebaseDatabase database= FirebaseDatabase.getInstance();
 DatabaseReference myRef=database.getReference();
@@ -51,6 +51,7 @@ String uID;
         email=findViewById(R.id.txtemail);
         password=findViewById(R.id.txtpwd);
         loginBtn=findViewById(R.id.btnLogin);
+        guestBtn=findViewById(R.id.guest);
         signUpProgressBar=findViewById(R.id.signUpProgressBar);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +94,13 @@ String uID;
                 });
             }
 
+        });
+        guestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Helper.ISGUEST=true;
+                startActivity(new Intent(RegisterActivity.this,start.class));
+            }
         });
     }
     public  void addUser()
@@ -137,6 +145,7 @@ String uID;
                     int highScore = settings.getInt("HIGH_SCORE", 0);
 
                     intent.putExtra("EXTRA_SESSION_ID", currentFirebaseUser.getUid());
+                    Helper.ISGUEST=false;
                     startActivity(intent);
                 }
             }

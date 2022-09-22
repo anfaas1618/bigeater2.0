@@ -43,7 +43,7 @@ public class start extends AppCompatActivity {
                 Log.i(TAG, "onInitializationComplete: "+initializationStatus.toString());
                 Context context;
                 interstitialAd =new InterstitialAd(start.this);
-                interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+                interstitialAd.setAdUnitId("ca-app-pub-4112378949427472/9413545613");
                 interstitialAd.loadAd(new AdRequest.Builder().build());
 
             }
@@ -58,12 +58,13 @@ public class start extends AppCompatActivity {
      if (interstitialAd.isLoaded())
             interstitialAd.show();
         else
-        {
-            Toast.makeText(start.this, "please enable your internet it helps us!!", Toast.LENGTH_SHORT).show();
-            String uid = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        {String uid = null;
+         //   Toast.makeText(start.this, "please enable your internet it helps us!!", Toast.LENGTH_SHORT).show();
+        if (!Helper.ISGUEST)    uid= getIntent().getStringExtra("EXTRA_SESSION_ID");
 
             Intent intent = new Intent(getApplicationContext(), main.class);
-            intent.putExtra("EXTRA_SESSION_ID", uid);
+            if (!Helper.ISGUEST)   intent.putExtra("EXTRA_SESSION_ID", uid);
+            else intent.putExtra("EXTRA_SESSION_ID", "guest");
             startActivity(intent);
         }
         interstitialAd.setAdListener(new AdListener(){

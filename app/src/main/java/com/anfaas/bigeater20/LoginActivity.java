@@ -80,12 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                             editor1.commit();
                             SharedPreferences UID = getSharedPreferences("UID", Context.MODE_PRIVATE);
                             SharedPreferences.Editor EDIT = UID.edit();
-                            EDIT.putString("UID", user.Uid);
+                            EDIT.putString("UID", user.getUid());
                             EDIT.commit();
                             int highScore = settings.getInt("HIGH_SCORE", 0);
                             if (highScore==0) {
                                 SharedPreferences.Editor editor = settings.edit();
-                                editor.putInt("HIGH_SCORE", user.score);
+                                editor.putInt("HIGH_SCORE", user.getScore());
                                 editor.commit();
 
                             }
